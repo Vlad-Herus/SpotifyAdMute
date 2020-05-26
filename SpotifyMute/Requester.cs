@@ -230,14 +230,7 @@ namespace SpotifyMute
 
         #region Get Current song
 
-        private const int APPCOMMAND_VOLUME_MUTE = 0x80000;
-
-        private int WM_APPCOMMAND = 0x319;
-
         bool m_MutedByMe = false;
-
-        [DllImport("user32.dll")]
-        static extern IntPtr SendMessageW(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
 
         private void MuteIfAids()
         {
@@ -332,11 +325,6 @@ namespace SpotifyMute
                     State = State._1_Idle;
                 }
             }
-        }
-
-        void ToggleMute()
-        {
-            SendMessageW(m_Handle, WM_APPCOMMAND, m_Handle, new IntPtr(APPCOMMAND_VOLUME_MUTE));
         }
 
         public void Dispose()
